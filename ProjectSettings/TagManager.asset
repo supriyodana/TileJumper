@@ -11,6 +11,7 @@ TagManager:
   - Tile1
   - Tile2
   - Tile3
+  - PlayPauseManager
   layers:
   - Default
   - TransparentFX

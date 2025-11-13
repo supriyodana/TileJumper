@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class BallController : MonoBehaviour
 {
+    private int highScore = 0;
+    
     private Rigidbody ballrb;
 
     public float jumpForce;
@@ -18,6 +20,9 @@ public class BallController : MonoBehaviour
 
     public int score = 0;
     public TextMeshProUGUI scoreTMP;
+    public TextMeshProUGUI scoreTMPOnGameOverScreen;
+
+    public TextMeshProUGUI highScoreTxt;
 
     //audio
     private AudioSource coinCollect;
@@ -33,6 +38,8 @@ public class BallController : MonoBehaviour
         AudioSource[] audioSources = GetComponents<AudioSource>();
         coinCollect = audioSources[0];
         gameOverSound = audioSources[1];
+
+        highScore = PlayerPrefs.GetInt("HighScore", 0);
     }
 
     // Update is called once per frame
@@ -56,6 +63,21 @@ public class BallController : MonoBehaviour
             {
                 gameOverSound.Play();
                 isGameOverSoundPlayed = true;
+            }
+
+            scoreTMPOnGameOverScreen.text = "Your Score : " + score.ToString();
+            scoreTMP.text = "";
+
+            if (score > highScore)
+            {
+                highScore = score;
+                PlayerPrefs.SetInt("HighScore", highScore);
+                PlayerPrefs.Save();
+                highScoreTxt.text = "High Score : " + highScore.ToString();
+            }
+            else
+            {
+                highScoreTxt.text = "High Score : " + highScore.ToString();
             }
 
             // Debug.Log("game over!");

@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class PlayPauseManager : MonoBehaviour
 {
-    private bool isPause = false;
+    public bool isPause = false;
     public GameObject PauseCanvas;
     public GameObject PlayCanvas;
 

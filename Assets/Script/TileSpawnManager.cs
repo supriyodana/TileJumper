@@ -43,8 +43,7 @@ public class TileSpawnManager : MonoBehaviour
 
     void Update()
     {
-
-
+        
     }
 
     void SpawnTileAndCollectibles()
@@ -73,11 +72,12 @@ public class TileSpawnManager : MonoBehaviour
         Debug.Log(tileLength.ToString());
 
         // nextSpawnDelay = Mathf.Clamp(tileLength / 8f, 1.5f, 3.5f); //here to change
-        nextSpawnDelay = Mathf.Clamp(tileLength / moveSpeed, 1.5f,3f);
+        nextSpawnDelay = Mathf.Clamp(tileLength / moveSpeed, 1.5f, 3f);
         // nextSpawnDelay = tileLength / moveSpeed;
 
         // float randomY = GetRandomY();
         // float randomY = Random.Range(1f, 3f) * (Random.value < 0.5f ? -1f : 1f);
+        
         float randomY;
         do
         {
@@ -105,7 +105,7 @@ public class TileSpawnManager : MonoBehaviour
             if (canSpawn)
             {
                 SpawnTileAndCollectibles();
-                canSpawn = false;
+                canSpawn = false;   
                 yield return new WaitForSeconds(nextSpawnDelay);
                 canSpawn = true;
             }
